@@ -1,0 +1,9 @@
+# Make a flashcard database with a command line tool for practicing
+# A flashcard should be an object with attributes: front, back, notes/details
+# the details or notes attribute would be additional explanation for the back.
+# This allows testing from front to back, back to front.
+# Testing from back to front can allow a fair test without showing all the details and giving away the answer
+# Testing from front to back can reveal either the back and/or the details
+# the script should take an argument to specify a study deck, this study deck will be contained in a file
+# consider whether we need a unique identifier or sequence number for each card
+# decks should have functions to add cards, delete cards, shuffle cards, alphabetize them 
