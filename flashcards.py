@@ -1,17 +1,17 @@
 # this is the flashcards app. Write up flashcard objects and a script for practicing
 # take an argument in the CLI to specify which deck to study
 
-class Flashcard(Object):
+class Flashcard(object):
 	"""A Flashcard object will represent one flashcard with a front, back, and a notes section, to function like a second back side.
 	Attributes:
 		front
 		back
 		notes
 	"""
-	def __init__(self, font='', back='', notes=''):
-		self.front
-		self.back
-		self.notes
+	def __init__(self, front='', back='', notes=''):
+		self.front = front
+		self.back = back 
+		self.notes = notes
 
 	def __str__(self):
 		"""Returns a human readable string representation."""
@@ -26,7 +26,7 @@ class Deck(Flashcard):
 		cards: list of Flashcard objects.
 	"""
 
-	def __init__(self, name, description='')
+	def __init__(self, name, description=''):
 		"""Initializes a deck with a provided name."""
 		self.cards = []
 		self.name = name
@@ -37,10 +37,10 @@ class Deck(Flashcard):
 		"""
 		result = []
 		for card in self.cards:
-			result.append(str(card)):
+			result.append(str(card))
 		return '\n'.join(result)
 
-	def add_card(self)
+	def add_card(self):
 		"""Creates a new card and adds it to this deck."""
 		front = input("Write the front side of this card: ")
 		back = input("Write the back side of this card: ")
@@ -51,3 +51,7 @@ class Deck(Flashcard):
 	def delete_card(self, card):
 		"""Deletes a flashcard from the deck."""
 		self.cards.remove(card)
+
+sample = Deck('Sample')
+sample.add_card()
+print(sample)
