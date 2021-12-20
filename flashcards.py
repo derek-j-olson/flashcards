@@ -1,5 +1,10 @@
+#!/usr/bin/python3
 # this is the flashcards app. Write up flashcard objects and a script for practicing
 # take an argument in the CLI to specify which deck to study
+
+import sys
+import sqlite3
+from sqlite3 import Error 
 
 class Flashcard(object):
 	"""A Flashcard object will represent one flashcard with a front, back, and a notes section, to function like a second back side.
@@ -52,6 +57,23 @@ class Deck(Flashcard):
 		"""Deletes a flashcard from the deck."""
 		self.cards.remove(card)
 
-sample = Deck('Sample')
-sample.add_card()
-print(sample)
+def create_connection(db_file):
+	"""Create a database connection to a SQLite database.
+	"""
+	conn = None
+	try:
+		conn = sqlite3.connect(db_file)
+		print(sqlite3.version)
+	except Error as e:
+		print(e)
+	finally:
+		if conn:
+			conn.close()
+
+if __name__ == '__main__':
+	database = sys.argv[1]
+	print("Database file name: ", database)
+	create_connection("/users/Derek/Desktop/Programs/flashcards/sqlite/db/{}.db".format(database))
+	sample = Deck('Sample')
+	sample.add_card()
+	print(sample)
