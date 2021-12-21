@@ -66,14 +66,17 @@ def create_connection(db_file):
 		print(sqlite3.version)
 	except Error as e:
 		print(e)
-	finally:
-		if conn:
-			conn.close()
+	
 
 if __name__ == '__main__':
 	database = sys.argv[1]
 	print("Database file name: ", database)
-	create_connection("/users/Derek/Desktop/Programs/flashcards/sqlite/db/{}.db".format(database))
+	con = sqlite3.connect("/users/Derek/Desktop/Programs/flashcards/sqlite/db/{}.db".format(database))
+	cursor = con.cursor()
 	sample = Deck('Sample')
 	sample.add_card()
-	print(sample)
+	new_card = sample.cards[-1]
+	cursor.execute('INSERT INTO linuxcommands VALUES("{}","{}","{}");'.format(new_card.front, new_card.back, new_card.notes))
+	con.commit()
+	con.close()
+
